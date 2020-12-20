@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Xinyu Li" />
+
+<meta name="date" content="2020-12-20" />
+
+<title>Homework1</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Homework1</h1>
+<h4 class="author">Xinyu Li</h4>
+<h4 class="date">2020-12-20</h4>
+
+
+
+<div id="question-1" class="section level2">
+<h2>Question 1</h2>
+<p>Use knitr to produce an example in the book which contains at least one figure.</p>
+</div>
+<div id="answer-1" class="section level2">
+<h2>Answer 1</h2>
+<p>Use lattice package to compare the ECDF and CDF of random data from normal distribution.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(lattice)</span></code></pre></div>
+<pre><code>## Warning: package &#39;lattice&#39; was built under R version 4.0.3</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>n &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">10</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">sum</span>(n))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">rep</span>(n, n), <span class="dt">labels=</span><span class="kw">paste</span>(<span class="st">&quot;n =&quot;</span>, n))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">densityplot</span>(<span class="op">~</span><span class="st"> </span>x <span class="op">|</span><span class="st"> </span>y,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="dt">panel =</span> <span class="cf">function</span>(x, ...) {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="kw">panel.densityplot</span>(x, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, ...)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="kw">panel.mathdensity</span>(<span class="dt">dmath=</span>dnorm,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="dt">args=</span><span class="kw">list</span>(<span class="dt">mean=</span><span class="kw">mean</span>(x), <span class="dt">sd=</span><span class="kw">sd</span>(x)),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>})</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>The larger the sample size, the better the fitting effect.</p>
+</div>
+<div id="question-2" class="section level2">
+<h2>Question 2</h2>
+<p>Use knitr to produce an example in the book which contains at least one table.</p>
+</div>
+<div id="answer-2" class="section level2">
+<h2>Answer 2</h2>
+<p>Use linear Regression to fit data.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>x1&lt;-<span class="kw">c</span>(<span class="fl">0.10</span>, <span class="fl">0.11</span>, <span class="fl">0.12</span>, <span class="fl">0.13</span>, <span class="fl">0.14</span>, <span class="fl">0.15</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="fl">0.16</span>, <span class="fl">0.17</span>, <span class="fl">0.18</span>, <span class="fl">0.20</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>x2&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>y&lt;-<span class="kw">c</span>(<span class="fl">42.0</span>, <span class="fl">43.5</span>, <span class="fl">49.0</span>, <span class="fl">45.5</span>, <span class="fl">45.0</span>, <span class="fl">47.5</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="fl">49.0</span>, <span class="fl">53.0</span>, <span class="fl">53.0</span>, <span class="fl">55.0</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>lm.sol&lt;-<span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1<span class="op">+</span>x2)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">summary</span>(lm.sol)<span class="op">$</span>coef)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">31.4931670</td>
+<td align="right">3.2740465</td>
+<td align="right">9.619035</td>
+<td align="right">0.0000276</td>
+</tr>
+<tr class="even">
+<td align="left">x1</td>
+<td align="right">123.5357918</td>
+<td align="right">19.8256005</td>
+<td align="right">6.231125</td>
+<td align="right">0.0004320</td>
+</tr>
+<tr class="odd">
+<td align="left">x2</td>
+<td align="right">-0.4264642</td>
+<td align="right">0.4261351</td>
+<td align="right">-1.000772</td>
+<td align="right">0.3502682</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="question-3" class="section level2">
+<h2>Question 3</h2>
+<p>Use knitr to produce an example in the book which contains at least a couple of Latex formulas.</p>
+</div>
+<div id="answer-3" class="section level2">
+<h2>Answer 3</h2>
+<p>Pdf of multivariate normal distribution: <span class="math display">\[f_{\mathbf{x}}\left(x_{1}, \ldots, x_{k}\right)=\frac{1}{\sqrt{(2 \pi)^{k}|\mathbf{\Sigma}|}} \exp \left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^{\mathrm{T}} \mathbf{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right)\]</span></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

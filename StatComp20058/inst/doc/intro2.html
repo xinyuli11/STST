@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Xinyu Li" />
+
+
+<title>intro2</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">intro2</h1>
+<h4 class="author">Xinyu Li</h4>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(StatComp20058)</span></code></pre></div>
+<div id="myst-and-mean_ci" class="section level2">
+<h2><em>myst</em> and <em>mean_ci</em></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">data</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">attach</span>(data)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">myst</span>(age)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">#&gt;          n       mean      stdev       skew   kurtosis </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">#&gt; 1000.00000   49.61167   10.02291  -71.66295 -553.67663</span></span></code></pre></div>
+<p>This function has a preliminary understanding of a sample set by calculating basic statistics such as mean value, variance, skewness, kurtosis, etc., which is similar to the simplified SumMAR function.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">data</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">attach</span>(data)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">mean_ci</span>(age,<span class="fl">0.95</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">#&gt; [1] 48.99045 50.23288</span></span></code></pre></div>
+<p>This function can output a confidence interval of the specified confidence degree of an approximate normal distribution, which is applicable in the case of large samples</p>
+</div>
+<div id="getrandomnum-and-outlierkd" class="section level2">
+<h2><em>getRandomNum</em> and <em>outlierKD</em></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>z =<span class="st"> </span><span class="kw">getRandomNum</span>(<span class="dt">x =</span> <span class="dv">5</span>,<span class="dt">min =</span> <span class="dv">2230</span>,<span class="dt">q25 =</span> <span class="dv">18123</span>,<span class="dt">q50 =</span> <span class="dv">52213</span>,<span class="dt">q75 =</span> <span class="dv">78312</span>,<span class="dt">max =</span> <span class="dv">234234123</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">quantile</span>(z)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">#&gt;        0%       25%       50%       75%      100% </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="co">#&gt;      2230     18123     52213     78312 234234123</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="kw">fivenum</span>(z)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="co">#&gt; [1]      2230     18123     52213     78312 234234123</span></span></code></pre></div>
+<p>According to order statistics, random sequences can be generated, and some statistical studies on order statistics can be carried out</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">data</span>(<span class="st">&quot;data&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="kw">attach</span>(data)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">1</span>),<span class="dt">mar=</span><span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="kw">outlierKD</span>(data,age)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<pre><code>#&gt; Outliers identified: 4 
+#&gt; Propotion (%) of outliers: 0.4 
+#&gt; Mean of the outliers: 48.44 
+#&gt; Mean without removing outliers: 49.61 
+#&gt; Mean if we remove outliers: 49.62</code></pre>
+<p>Outliers are detected for a sequence and the decision is made whether to delete or convert them to missing values</p>
+</div>
+<div id="gradientdescent" class="section level2">
+<h2><em>GradientDescent</em></h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="kw">data</span>(<span class="st">&quot;irisl&quot;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>x&lt;-<span class="kw">matrix</span>(iris[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>,<span class="dv">1</span>],<span class="dv">50</span>,<span class="dv">1</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>y&lt;-<span class="kw">matrix</span>(iris[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>,<span class="dv">2</span>],<span class="dv">50</span>,<span class="dv">1</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>l&lt;-<span class="kw">lm</span>(y<span class="op">~</span>x)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="kw">summary</span>(l)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a><span class="co">#&gt; lm(formula = y ~ x)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a><span class="co">#&gt; -0.72394 -0.18273 -0.00306  0.15738  0.51709 </span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true"></a><span class="co">#&gt; (Intercept)  -0.5694     0.5217  -1.091    0.281    </span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true"></a><span class="co">#&gt; x             0.7985     0.1040   7.681 6.71e-10 ***</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true"></a><span class="co">#&gt; ---</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true"></a><span class="co">#&gt; Residual standard error: 0.2565 on 48 degrees of freedom</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true"></a><span class="co">#&gt; Multiple R-squared:  0.5514, Adjusted R-squared:  0.542 </span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true"></a><span class="co">#&gt; F-statistic: 58.99 on 1 and 48 DF,  p-value: 6.71e-10</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="kw">GradientDescent</span>(x,y,<span class="fl">1e-14</span>,<span class="dv">1000</span>,<span class="dt">stepmethod=</span>T,<span class="dt">step=</span><span class="fl">0.001</span>,<span class="dt">alpha=</span><span class="fl">0.25</span>,<span class="dt">beta=</span><span class="fl">0.8</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="co">#&gt; $Coefficient</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="co">#&gt;            [,1]</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="co">#&gt; [1,] -0.5692863</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co">#&gt; [2,]  0.7984992</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="co">#&gt; $`iteration number`</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a><span class="co">#&gt; [1] 23785</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a><span class="co">#&gt; </span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a><span class="co">#&gt; $error</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="co">#&gt;          [,1]</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a><span class="co">#&gt; [1,] 3.158675</span></span></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
